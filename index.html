@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORLD CUP 2026 - GROUP PREDICTIONS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --americas: #D6E4F0; --europa: #D0E8E0; --africa: #F0E2D0; --asia: #F0D0D0; --oceania: #C0E0E0; --empate: #E2E8F0;
+            --score-green: #2E7D32; --score-yellow: #F9A825; --score-red: #C62828;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #e5e7eb; display: flex; justify-content: center; align-items: flex-start; padding: 20px; font-family: 'Inter', 'Roboto Condensed', sans-serif; color: #000; }
+        .sheet { width: 297mm; min-height: 420mm; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.15); margin: 0 auto; padding: 10mm 12mm; box-sizing: border-box; }
+        @media print { body { background: white; padding: 0; } .sheet { box-shadow: none; width: 297mm; padding: 10mm 12mm; page-break-after: always; } @page { size: 297mm 420mm; margin: 0; bleed: 3mm; } }
+        h1 { font-family: 'Oswald', 'Impact', sans-serif; font-weight: 700; font-size: 1.8em; text-align: center; letter-spacing: 1.5px; color: #000; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 6px; }
+        .table-wrapper { overflow-x: auto; width: 100%; }
+        table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 6.2pt; color: #000; }
+        thead th { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 6.8pt; text-transform: uppercase; letter-spacing: 0.6px; background: #fff; color: #000; padding: 6px 3px; border-bottom: 1.5px solid #000; border-top: 1px solid #000; text-align: center; white-space: nowrap; vertical-align: top; }
+        .header-name { display: block; }
+        .total-badge { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 7pt; font-weight: 700; margin-top: 3px; color: #fff; }
+        tbody td { padding: 4px 3px; text-align: center; border-bottom: 0.5pt solid #E2E8F0; background-color: #fff; white-space: nowrap; font-weight: 500; font-size: 6.2pt; }
+        tbody tr:nth-child(even) td { background-color: #F8FAFC; }
+        .fi { font-size: 1em; vertical-align: middle; margin: 0 1px; border-radius: 2px; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.1); }
+        .pred-cell { font-weight: 600; font-size: 6.2pt; padding: 3px 4px; border-radius: 2px; color: #000; min-width: 42px; white-space: nowrap; }
+        .pred-content { display: inline-flex; align-items: center; gap: 2px; justify-content: center; }
+        .score-badge { font-size: 5.5pt; font-weight: 700; width: 12px; height: 12px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-left: 1px; line-height: 1; color: #fff; }
+        .score-3 { background: #F9A825; color: #000; } .score-1 { background: #2E7D32; } .score-0 { background: #C62828; }
+        .bg-americas { background-color: #D6E4F0; } .bg-europa { background-color: #D0E8E0; } .bg-africa { background-color: #F0E2D0; } .bg-asia { background-color: #F0D0D0; } .bg-oceania { background-color: #C0E0E0; } .bg-empate { background-color: #E2E8F0; }
+        tbody tr:nth-child(even) td.pred-cell.bg-americas { background-color: #c9d9e8; } tbody tr:nth-child(even) td.pred-cell.bg-europa { background-color: #c2dcd4; } tbody tr:nth-child(even) td.pred-cell.bg-africa { background-color: #e8d8c0; } tbody tr:nth-child(even) td.pred-cell.bg-asia { background-color: #e8c4c4; } tbody tr:nth-child(even) td.pred-cell.bg-oceania { background-color: #b3d6d6; } tbody tr:nth-child(even) td.pred-cell.bg-empate { background-color: #d6dce3; }
+        tfoot td { font-family: 'Inter', sans-serif; font-size: 5.5pt; background: #fff; text-align: center; padding: 8px 5px; border-top: 1px solid #000; font-weight: 500; }
+        .legend { display: flex; justify-content: center; gap: 12px; padding: 10px 5px 5px; flex-wrap: wrap; font-size: 6pt; font-weight: 500; }
+        .legend span { display: flex; align-items: center; gap: 3px; }
+        .legend-swatch { width: 8px; height: 8px; border-radius: 2px; display: inline-block; border: 0.5px solid #aaa; }
+        .legend-badge { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 2px; }
+    </style>
+</head>
+<body>
+<div class="sheet">
+    <h1>⚽ WORLD CUP 2026 - GROUP PREDICTIONS</h1>
+    <div class="table-wrapper">
+        <table>
+            <thead id="table-head">
+                <tr><th>FECHA</th><th>HORA (CET)</th><th>PARTIDO</th><th>RESULT.</th><th>PAULA</th><th>OSCAR</th><th>TOMÁS</th><th>HUESLEY</th><th>SANTIAGO</th><th>MIGUEL</th><th>JUAN</th><th>DANIEL</th></tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+            <tfoot>
+                <tr><td colspan="12">Total: 72 partidos · 3 pts (exacto), 1 pt (ganador), 0 pts (fallo) · Degradado rojo→amarillo</td></tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="legend">
+        <span><span class="legend-swatch" style="background:#D6E4F0;"></span> Américas</span>
+        <span><span class="legend-swatch" style="background:#D0E8E0;"></span> Europa</span>
+        <span><span class="legend-swatch" style="background:#F0E2D0;"></span> África</span>
+        <span><span class="legend-swatch" style="background:#F0D0D0;"></span> Asia</span>
+        <span><span class="legend-swatch" style="background:#C0E0E0;"></span> Oceanía</span>
+        <span><span class="legend-swatch" style="background:#E2E8F0;"></span> Empate</span>
+        <span><span class="legend-badge" style="background:#F9A825;"></span> 3</span>
+        <span><span class="legend-badge" style="background:#2E7D32;"></span> 1</span>
+        <span><span class="legend-badge" style="background:#C62828;"></span> 0</span>
+    </div>
+</div>
+
+<script>
+    const regionMap = {
+        'MEX':'americas','RSA':'africa','KOR':'asia','CZE':'europa','CAN':'americas','BIH':'europa',
+        'USA':'americas','PAR':'americas','HAI':'americas','SCO':'europa','AUS':'oceania','TUR':'europa',
+        'BRA':'americas','MAR':'africa','QAT':'asia','SUI':'europa','CIV':'africa','ECU':'americas',
+        'GER':'europa','CUW':'americas','NED':'europa','JPN':'asia','SWE':'europa','TUN':'africa',
+        'KSA':'asia','URU':'americas','ESP':'europa','CPV':'africa','IRN':'asia','NZL':'oceania',
+        'BEL':'europa','EGY':'africa','FRA':'europa','SEN':'africa','IRQ':'asia','NOR':'europa',
+        'ARG':'americas','ALG':'africa','AUT':'europa','JOR':'asia','GHA':'africa','PAN':'americas',
+        'ENG':'europa','CRO':'europa','POR':'europa','COD':'africa','UZB':'asia','COL':'americas'
+    };
+    const flagMap = {
+        'MEX':'mx','RSA':'za','KOR':'kr','CZE':'cz','CAN':'ca','BIH':'ba','USA':'us','PAR':'py',
+        'HAI':'ht','SCO':'gb-sct','AUS':'au','TUR':'tr','BRA':'br','MAR':'ma','QAT':'qa','SUI':'ch',
+        'CIV':'ci','ECU':'ec','GER':'de','CUW':'cw','NED':'nl','JPN':'jp','SWE':'se','TUN':'tn',
+        'KSA':'sa','URU':'uy','ESP':'es','CPV':'cv','IRN':'ir','NZL':'nz','BEL':'be','EGY':'eg',
+        'FRA':'fr','SEN':'sn','IRQ':'iq','NOR':'no','ARG':'ar','ALG':'dz','AUT':'at','JOR':'jo',
+        'GHA':'gh','PAN':'pa','ENG':'gb-eng','CRO':'hr','POR':'pt','COD':'cd','UZB':'uz','COL':'co'
+    };
+    function getRegion(c) { return 'bg-'+(regionMap[c]||'empate'); }
+    function flag(c) { const s=document.createElement('span'); s.className='fi fi-'+(flagMap[c]||c.toLowerCase()); return s; }
+    function parse(s) { if(!s||s==='-'||s.trim()==='') return null; const p=s.split('-'); if(p.length!==2) return null; const a=parseInt(p[0],10),b=parseInt(p[1],10); return isNaN(a)||isNaN(b)?null:{g1:a,g2:b}; }
+    function outcome(g1,g2) { return g1>g2?'home':g1<g2?'away':'draw'; }
+    function score(r,p) { const x=parse(r),y=parse(p); if(!x||!y) return null; if(x.g1===y.g1&&x.g2===y.g2) return 3; return outcome(x.g1,x.g2)===outcome(y.g1,y.g2)?1:0; }
+    function winnerStr(m,home,away) { const p=parse(m); if(!p) return null; if(p.g1>p.g2) return home; if(p.g1<p.g2) return away; return null; }
+    function cell(marcador,home,away,pts) {
+        const td=document.createElement('td'); td.className='pred-cell';
+        const p=parse(marcador); let bg='bg-empate';
+        if(p) { if(p.g1>p.g2) bg=getRegion(home); else if(p.g1<p.g2) bg=getRegion(away); }
+        td.classList.add(bg);
+        const wrap=document.createElement('span'); wrap.className='pred-content';
+        wrap.appendChild(document.createTextNode(marcador||''));
+        const w=p?winnerStr(marcador,home,away):null; if(w&&flagMap[w]) wrap.appendChild(flag(w));
+        if(pts!==null&&pts!==undefined) { const badge=document.createElement('span'); badge.className='score-badge score-'+pts; badge.textContent=pts; wrap.appendChild(badge); }
+        td.appendChild(wrap); return td;
+    }
+
+    // Función para interpolar color entre rojo y amarillo
+    function getGradientColor(value, min, max) {
+        if (max === min) return '#F9A825'; // todos iguales → amarillo
+        
+        // Normalizar el valor entre 0 (mínimo) y 1 (máximo)
+        const ratio = (value - min) / (max - min);
+        
+        // Rojo puro: #C62828 → Amarillo dorado: #F9A825
+        const r1 = 198, g1 = 40, b1 = 40;   // rojo
+        const r2 = 249, g2 = 168, b2 = 37;  // amarillo
+        
+        const r = Math.round(r1 + (r2 - r1) * ratio);
+        const g = Math.round(g1 + (g2 - g1) * ratio);
+        const b = Math.round(b1 + (b2 - b1) * ratio);
+        
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    // [fecha, hora (CET), home, away, RESULT, PAULA, OSCAR, TOMAS, HUESLEY, SANTIAGO, MIGUEL, JUAN, DANIEL]
+    const matches = [
+        ['11.06','02:00','MEX','RSA','2-0','3-0','2-1','2-1','1-0','1-0','2-1','1-2','2-1'],
+        ['11.06','21:00','KOR','CZE','2-1','1-1','2-0','1-1','1-2','1-0','2-2','1-1','2-2'],
+        ['12.06','20:00','CAN','BIH','1-1','2-0','1-1','0-1','3-1','1-0','1-1','1-1','1-0'],
+        ['12.06','02:00','USA','PAR','4-1','2-0','1-3','2-0','2-2','1-0','3-2','2-2','2-2'],
+        ['13.06','01:00','HAI','SCO','0-1','0-3','0-2','0-3','0-3','0-2','0-1','0-3','1-2'],
+        ['13.06','02:00','AUS','TUR','2-0','0-2','2-1','1-1','1-3','0-1','1-2','1-2','0-1'],
+        ['13.06','23:00','BRA','MAR','1-1','2-2','3-3','3-0','2-1','1-0','1-2','3-2','2-1'],
+        ['13.06','21:00','QAT','SUI','1-1','0-3','0-2','0-1','1-2','0-2','0-2','0-4','0-3'],
+        ['14.06','01:00','CIV','ECU','1-0','1-2','2-2','2-1','1-1','0-1','2-2','0-2','1-2'],
+        ['14.06','19:00','GER','CUW','7-1','5-0','3-1','4-0','4-0','3-0','3-1','8-0','4-0'],
+        ['14.06','22:00','NED','JPN','2-2','2-1','1-1','2-0','2-1','1-0','1-2','3-2','2-2'],
+        ['14.06','19:00','SWE','TUN','5-1','1-1','2-3','1-1','1-0','1-0','1-0','2-0','1-2'],
+        ['15.06','19:00','KSA','URU','1-1','0-2','0-1','0-2','0-2','0-2','0-2','1-2','1-2'],
+        ['15.06','19:00','ESP','CPV','0-0','4-0','3-0','3-0','4-0','3-0','4-1','6-0','4-1'],
+        ['15.06','02:00','IRN','NZL','2-2','2-0','2-1','1-1','1-0','1-0','0-0','0-0','1-0'],
+        ['15.06','21:00','BEL','EGY','1-1','3-1','2-1','2-0','2-0','2-0','3-1','1-1','2-1'],
+        ['16.06','21:00','FRA','SEN','','2-0','2-2','2-1','3-1','2-0','3-1','2-2','2-2'],
+        ['16.06','23:00','IRQ','NOR','','0-1','0-5','0-2','0-2','0-2','1-2','1-3','0-1'],
+        ['16.06','02:00','ARG','ALG','','3-1','2-1','3-1','3-1','2-0','2-0','3-0','2-1'],
+        ['16.06','02:00','AUT','JOR','','2-0','1-0','2-0','2-0','2-0','2-0','3-1','2-0'],
+        ['17.06','02:00','GHA','PAN','','2-1','3-0','2-0','2-0','1-0','2-2','2-1','2-0'],
+        ['17.06','22:00','ENG','CRO','','2-2','1-2','2-1','2-3','2-1','1-0','2-7','1-1'],
+        ['17.06','19:00','POR','COD','','3-0','2-2','2-0','3-0','2-0','3-0','6-0','3-1'],
+        ['17.06','02:00','UZB','COL','','1-3','0-1','0-2','0-1','0-2','1-3','0-3','0-2'],
+        ['18.06','19:00','CZE','RSA','','2-0','2-1','2-1','3-2','1-0','1-0','1-3','2-0'],
+        ['18.06','22:00','SUI','BIH','','2-1','2-0','1-0','3-0','1-0','3-2','3-2','2-0'],
+        ['18.06','02:00','CAN','QAT','','1-1','2-0','1-0','3-1','2-0','2-0','3-1','2-0'],
+        ['18.06','02:00','MEX','KOR','','2-0','1-1','2-0','2-2','1-0','0-1','2-0','1-2'],
+        ['19.06','20:00','BRA','HAI','','4-0','3-1','4-0','3-0','3-0','2-0','6-0','3-0'],
+        ['19.06','02:00','SCO','MAR','','1-3','1-2','1-1','1-3','1-2','0-2','2-1','1-2'],
+        ['19.06','20:00','TUR','PAR','','1-0','1-2','2-0','1-0','1-0','1-1','7-3','1-2'],
+        ['19.06','20:00','USA','AUS','','2-1','1-2','1-1','2-1','1-0','0-1','1-1','2-0'],
+        ['20.06','22:00','GER','CIV','','2-0','2-1','2-0','3-1','1-0','1-0','3-0','2-1'],
+        ['20.06','02:00','ECU','CUW','','4-0','3-0','2-0','2-0','2-0','1-0','4-0','3-1'],
+        ['20.06','21:00','NED','SWE','','1-1','3-0','2-1','3-1','2-1','2-0','2-1','2-0'],
+        ['20.06','23:00','TUN','JPN','','0-2','0-2','1-1','0-2','1-1','0-2','1-3','0-2'],
+        ['21.06','19:00','URU','CPV','','3-0','2-1','3-0','3-1','2-0','2-1','2-0','2-1'],
+        ['21.06','19:00','ESP','KSA','','3-0','4-0','2-0','2-0','3-1','4-0','3-0','3-1'],
+        ['21.06','22:00','BEL','IRN','','3-0','2-1','2-0','2-1','2-0','4-0','2-0','2-0'],
+        ['21.06','02:00','NZL','EGY','','0-2','0-2','2-1','0-2','0-1','0-1','0-1','0-2'],
+        ['22.06','02:00','NOR','SEN','','1-2','2-1','2-1','3-1','1-1','1-2','1-2','0-2'],
+        ['22.06','19:00','FRA','IRQ','','4-0','2-0','3-0','2-1','3-0','5-0','5-0','4-0'],
+        ['22.06','21:00','ARG','AUT','','3-1','3-1','2-0','1-1','2-0','2-1','3-1','2-0'],
+        ['22.06','02:00','JOR','ALG','','0-3','1-4','0-2','2-2','0-1','0-1','0-2','1-2'],
+        ['23.06','19:00','ENG','GHA','','2-0','2-3','2-0','3-1','1-0','2-1','4-1','2-2'],
+        ['23.06','22:00','PAN','CRO','','1-3','0-4','0-2','1-4','0-3','0-2','0-7','1-3'],
+        ['23.06','21:00','POR','UZB','','4-0','2-0','4-0','4-0','1-0','2-0','4-0','3-0'],
+        ['23.06','02:00','COL','COD','','3-1','1-0','2-0','3-0','2-0','2-0','3-1','2-1'],
+        ['24.06','19:00','SCO','BRA','','0-2','2-3','0-3','0-2','0-0','1-3','1-3','1-2'],
+        ['24.06','19:00','MAR','HAI','','3-0','3-0','2-0','4-1','3-0','2-0','4-0','3-1'],
+        ['24.06','02:00','SUI','CAN','','2-1','1-1','1-1','1-1','1-0','1-0','3-1','2-1'],
+        ['24.06','02:00','BIH','QAT','','1-2','2-0','0-1','0-2','1-0','3-0','1-0','2-0'],
+        ['24.06','21:00','CZE','MEX','','0-1','2-1','1-2','2-0','1-1','1-2','0-7','1-2'],
+        ['24.06','21:00','RSA','KOR','','0-2','0-1','1-1','2-1','0-2','0-2','3-2','0-2'],
+        ['25.06','21:00','CUW','CIV','','0-3','1-2','0-2','0-2','0-2','0-0','1-2','0-2'],
+        ['25.06','22:00','ECU','GER','','2-3','3-3','0-2','0-3','1-2','2-1','2-1','2-2'],
+        ['25.06','02:00','JPN','SWE','','1-0','2-0','1-1','1-0','1-1','1-1','2-4','3-1'],
+        ['25.06','02:00','TUN','NED','','0-3','0-3','1-2','0-3','0-2','0-3','0-4','0-3'],
+        ['25.06','02:00','TUR','USA','','2-2','1-0','1-1','2-0','0-1','2-1','0-1','1-2'],
+        ['25.06','02:00','PAR','AUS','','1-1','3-1','0-2','2-0','1-0','1-0','2-0','2-2'],
+        ['26.06','21:00','NOR','FRA','','0-2','2-2','1-2','0-1','1-2','0-2','1-4','1-2'],
+        ['26.06','21:00','SEN','IRQ','','2-0','3-0','2-0','1-1','1-0','1-0','3-0','2-0'],
+        ['26.06','19:00','EGY','IRN','','1-2','0-0','2-0','1-1','2-1','2-1','2-1','2-1'],
+        ['26.06','19:00','NZL','BEL','','0-3','1-2','0-1','0-3','0-2','0-3','0-2','0-3'],
+        ['26.06','18:00','CPV','KSA','','1-1','2-1','0-1','0-2','1-1','2-0','0-1','2-1'],
+        ['26.06','23:00','URU','ESP','','2-3','1-3','1-2','1-3','2-3','1-3','1-4','1-2'],
+        ['27.06','19:00','PAN','ENG','','0-3','1-1','0-2','1-3','0-2','0-3','0-3','0-2'],
+        ['27.06','21:00','CRO','GHA','','2-0','2-1','2-1','3-2','2-1','2-1','2-2','1-1'],
+        ['27.06','21:00','ALG','AUT','','1-1','3-0','1-2','2-1','0-1','1-2','2-2','2-1'],
+        ['27.06','23:00','JOR','ARG','','0-4','0-3','0-3','0-2','0-4','1-3','0-5','0-3'],
+        ['27.06','21:00','COL','POR','','1-1','0-0','0-2','0-2','2-1','2-3','3-2','1-2'],
+        ['27.06','23:00','COD','UZB','','1-1','0-0','2-0','1-3','1-0','0-1','1-0','1-0']
+    ];
+
+    function build() {
+        const tbody = document.getElementById('table-body');
+        tbody.innerHTML = '';
+        const participants = ['paula', 'oscar', 'tomas', 'huesley', 'santiago', 'miguel', 'juan', 'daniel'];
+        const totals = Object.fromEntries(participants.map(p => [p, 0]));
+
+        matches.forEach(m => {
+            const [fecha, hora, home, away, real, paulaPred, oscar, tomas, huesley, santiago, miguel, juan, daniel] = m;
+            const tr = document.createElement('tr');
+            tr.insertAdjacentHTML('beforeend', `<td class="date-col">${fecha}</td><td class="time-col">${hora}</td>`);
+            const tdMatch = document.createElement('td'); tdMatch.className = 'match-col';
+            tdMatch.appendChild(flag(home)); tdMatch.appendChild(document.createTextNode(' vs ')); tdMatch.appendChild(flag(away));
+            tr.appendChild(tdMatch);
+            tr.appendChild(cell(real||'', home, away, null));
+            [paulaPred, oscar, tomas, huesley, santiago, miguel, juan, daniel].forEach((pred, i) => {
+                const pts = real ? score(real, pred) : null;
+                if (pts !== null) totals[participants[i]] += pts;
+                tr.appendChild(cell(pred, home, away, pts));
+            });
+            tbody.appendChild(tr);
+        });
+
+        // Actualizar cabecera con totales usando degradado
+        const thRow = document.getElementById('table-head').rows[0];
+        const totalValues = participants.map(p => totals[p]);
+        const maxTotal = Math.max(...totalValues);
+        const minTotal = Math.min(...totalValues);
+
+        participants.forEach((p, i) => {
+            const th = thRow.cells[i + 4];
+            const total = totals[p];
+            const bgColor = getGradientColor(total, minTotal, maxTotal);
+
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'header-name';
+            nameSpan.textContent = p.toUpperCase();
+
+            const badge = document.createElement('span');
+            badge.className = 'total-badge';
+            badge.textContent = total;
+            badge.style.backgroundColor = bgColor;
+            // Texto blanco para fondos oscuros, negro para claros
+            const rgb = bgColor.match(/\d+/g);
+            if (rgb) {
+                const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
+                badge.style.color = brightness > 150 ? '#000' : '#fff';
+            }
+
+            th.innerHTML = '';
+            th.appendChild(nameSpan);
+            th.appendChild(badge);
+        });
+    }
+
+    build();
+</script>
+</body>
+</html>
