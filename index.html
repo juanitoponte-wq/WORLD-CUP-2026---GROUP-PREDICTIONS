@@ -49,7 +49,7 @@
             </thead>
             <tbody id="table-body"></tbody>
             <tfoot>
-                <tr><td colspan="12">Total: 72 partidos · 3 pts (exacto), 1 pt (ganador), 0 pts (fallo) · Degradado rojo→amarillo</td></tr>
+                <tr><td colspan="12">Total: 72 partidos · 3 pts (exacto), 1 pt (ganador), 0 pts (fallo) · Resultados actualizados</td></tr>
             </tfoot>
         </table>
     </div>
@@ -103,25 +103,17 @@
         td.appendChild(wrap); return td;
     }
 
-    // Función para interpolar color entre rojo y amarillo
     function getGradientColor(value, min, max) {
-        if (max === min) return '#F9A825'; // todos iguales → amarillo
-        
-        // Normalizar el valor entre 0 (mínimo) y 1 (máximo)
+        if (max === min) return '#F9A825';
         const ratio = (value - min) / (max - min);
-        
-        // Rojo puro: #C62828 → Amarillo dorado: #F9A825
-        const r1 = 198, g1 = 40, b1 = 40;   // rojo
-        const r2 = 249, g2 = 168, b2 = 37;  // amarillo
-        
+        const r1 = 198, g1 = 40, b1 = 40;
+        const r2 = 249, g2 = 168, b2 = 37;
         const r = Math.round(r1 + (r2 - r1) * ratio);
         const g = Math.round(g1 + (g2 - g1) * ratio);
         const b = Math.round(b1 + (b2 - b1) * ratio);
-        
         return `rgb(${r}, ${g}, ${b})`;
     }
 
-    // [fecha, hora (CET), home, away, RESULT, PAULA, OSCAR, TOMAS, HUESLEY, SANTIAGO, MIGUEL, JUAN, DANIEL]
     const matches = [
         ['11.06','02:00','MEX','RSA','2-0','3-0','2-1','2-1','1-0','1-0','2-1','1-2','2-1'],
         ['11.06','21:00','KOR','CZE','2-1','1-1','2-0','1-1','1-2','1-0','2-2','1-1','2-2'],
@@ -139,10 +131,10 @@
         ['15.06','19:00','ESP','CPV','0-0','4-0','3-0','3-0','4-0','3-0','4-1','6-0','4-1'],
         ['15.06','02:00','IRN','NZL','2-2','2-0','2-1','1-1','1-0','1-0','0-0','0-0','1-0'],
         ['15.06','21:00','BEL','EGY','1-1','3-1','2-1','2-0','2-0','2-0','3-1','1-1','2-1'],
-        ['16.06','21:00','FRA','SEN','','2-0','2-2','2-1','3-1','2-0','3-1','2-2','2-2'],
-        ['16.06','23:00','IRQ','NOR','','0-1','0-5','0-2','0-2','0-2','1-2','1-3','0-1'],
-        ['16.06','02:00','ARG','ALG','','3-1','2-1','3-1','3-1','2-0','2-0','3-0','2-1'],
-        ['16.06','02:00','AUT','JOR','','2-0','1-0','2-0','2-0','2-0','2-0','3-1','2-0'],
+        ['16.06','21:00','FRA','SEN','3-1','2-0','2-2','2-1','3-1','2-0','3-1','2-2','2-2'],
+        ['16.06','23:00','IRQ','NOR','1-4','0-1','0-5','0-2','0-2','0-2','1-2','1-3','0-1'],
+        ['16.06','02:00','ARG','ALG','3-0','3-1','2-1','3-1','3-1','2-0','2-0','3-0','2-1'],
+        ['16.06','02:00','AUT','JOR','3-1','2-0','1-0','2-0','2-0','2-0','2-0','3-1','2-0'],
         ['17.06','02:00','GHA','PAN','','2-1','3-0','2-0','2-0','1-0','2-2','2-1','2-0'],
         ['17.06','22:00','ENG','CRO','','2-2','1-2','2-1','2-3','2-1','1-0','2-7','1-1'],
         ['17.06','19:00','POR','COD','','3-0','2-2','2-0','3-0','2-0','3-0','6-0','3-1'],
@@ -219,7 +211,6 @@
             tbody.appendChild(tr);
         });
 
-        // Actualizar cabecera con totales usando degradado
         const thRow = document.getElementById('table-head').rows[0];
         const totalValues = participants.map(p => totals[p]);
         const maxTotal = Math.max(...totalValues);
@@ -238,7 +229,6 @@
             badge.className = 'total-badge';
             badge.textContent = total;
             badge.style.backgroundColor = bgColor;
-            // Texto blanco para fondos oscuros, negro para claros
             const rgb = bgColor.match(/\d+/g);
             if (rgb) {
                 const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
