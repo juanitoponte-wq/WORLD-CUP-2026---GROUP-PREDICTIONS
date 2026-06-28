@@ -3,245 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WORLD CUP 2026 - GROUP PREDICTIONS</title>
+    <title>FIFA World Cup 2026 – ROUND OF 32 PREDICTIONS</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --americas: #D6E4F0; --europa: #D0E8E0; --africa: #F0E2D0; --asia: #F0D0D0; --oceania: #C0E0E0; --empate: #E2E8F0;
-            --score-green: #2E7D32; --score-yellow: #F9A825; --score-red: #C62828;
+            --americas: #D6E4F0;
+            --europa: #D0E8E0;
+            --africa: #F0E2D0;
+            --asia: #F0D0D0;
+            --oceania: #C0E0C0;
+            --empate: #E2E8F0;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #e5e7eb; display: flex; justify-content: center; align-items: flex-start; padding: 20px; font-family: 'Inter', 'Roboto Condensed', sans-serif; color: #000; }
-        .sheet { width: 297mm; min-height: 420mm; background: white; box-shadow: 0 10px 40px rgba(0,0,0,0.15); margin: 0 auto; padding: 10mm 12mm; box-sizing: border-box; }
-        @media print { body { background: white; padding: 0; } .sheet { box-shadow: none; width: 297mm; padding: 10mm 12mm; page-break-after: always; } @page { size: 297mm 420mm; margin: 0; bleed: 3mm; } }
-        h1 { font-family: 'Oswald', 'Impact', sans-serif; font-weight: 700; font-size: 1.8em; text-align: center; letter-spacing: 1.5px; color: #000; margin-bottom: 10px; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 6px; }
-        .table-wrapper { overflow-x: auto; width: 100%; }
-        table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 6.2pt; color: #000; }
-        thead th { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 6.8pt; text-transform: uppercase; letter-spacing: 0.6px; background: #fff; color: #000; padding: 6px 3px; border-bottom: 1.5px solid #000; border-top: 1px solid #000; text-align: center; white-space: nowrap; vertical-align: top; }
-        .header-name { display: block; }
-        .total-badge { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 7pt; font-weight: 700; margin-top: 3px; color: #fff; }
-        tbody td { padding: 4px 3px; text-align: center; border-bottom: 0.5pt solid #E2E8F0; background-color: #fff; white-space: nowrap; font-weight: 500; font-size: 6.2pt; }
-        tbody tr:nth-child(even) td { background-color: #F8FAFC; }
-        .fi { font-size: 1em; vertical-align: middle; margin: 0 1px; border-radius: 2px; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.1); }
-        .pred-cell { font-weight: 600; font-size: 6.2pt; padding: 3px 4px; border-radius: 2px; color: #000; min-width: 42px; white-space: nowrap; }
-        .pred-content { display: inline-flex; align-items: center; gap: 2px; justify-content: center; }
-        .score-badge { font-size: 5.5pt; font-weight: 700; width: 12px; height: 12px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-left: 1px; line-height: 1; color: #fff; }
-        .score-3 { background: #F9A825; color: #000; } .score-1 { background: #2E7D32; } .score-0 { background: #C62828; }
-        .bg-americas { background-color: #D6E4F0; } .bg-europa { background-color: #D0E8E0; } .bg-africa { background-color: #F0E2D0; } .bg-asia { background-color: #F0D0D0; } .bg-oceania { background-color: #C0E0E0; } .bg-empate { background-color: #E2E8F0; }
-        tbody tr:nth-child(even) td.pred-cell.bg-americas { background-color: #c9d9e8; } tbody tr:nth-child(even) td.pred-cell.bg-europa { background-color: #c2dcd4; } tbody tr:nth-child(even) td.pred-cell.bg-africa { background-color: #e8d8c0; } tbody tr:nth-child(even) td.pred-cell.bg-asia { background-color: #e8c4c4; } tbody tr:nth-child(even) td.pred-cell.bg-oceania { background-color: #b3d6d6; } tbody tr:nth-child(even) td.pred-cell.bg-empate { background-color: #d6dce3; }
-        tfoot td { font-family: 'Inter', sans-serif; font-size: 5.5pt; background: #fff; text-align: center; padding: 8px 5px; border-top: 1px solid #000; font-weight: 500; }
-        .legend { display: flex; justify-content: center; gap: 12px; padding: 10px 5px 5px; flex-wrap: wrap; font-size: 6pt; font-weight: 500; }
-        .legend span { display: flex; align-items: center; gap: 3px; }
-        .legend-swatch { width: 8px; height: 8px; border-radius: 2px; display: inline-block; border: 0.5px solid #aaa; }
-        .legend-badge { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 2px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            font-family: 'Inter', 'Roboto Condensed', sans-serif;
+            color: #000;
+        }
+        .sheet {
+            width: 297mm;
+            min-height: 420mm;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
+            padding: 10mm 12mm;
+            box-sizing: border-box;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .sheet {
+                box-shadow: none;
+                width: 297mm;
+                padding: 10mm 12mm;
+                page-break-after: always;
+            }
+            @page {
+                size: 297mm 420mm;
+                margin: 0;
+                bleed: 3mm;
+            }
+        }
+        h1 {
+            font-family: 'Oswald', 'Impact', sans-serif;
+            font-weight: 700;
+            font-size: 1.8em;
+            text-align: center;
+            letter-spacing: 1.5px;
+            color: #000;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 6px;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 6.2pt;
+            color: #000;
+        }
+        thead th {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 6.8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: #fff;
+            color: #000;
+            padding: 6px 3px;
+            border-bottom: 1.5px solid #000;
+            border-top: 1px solid #000;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: top;
+        }
+        .header-name {
+            display: block;
+        }
+        .total-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 7pt;
+            font-weight: 700;
+            margin-top: 3px;
+            color: #fff;
+        }
+        tbody td {
+            padding: 4px 3px;
+            text-align: center;
+            border-bottom: 0.5pt solid #E2E8F0;
+            background-color: #fff;
+            white-space: nowrap;
+            font-weight: 500;
+            font-size: 6.2pt;
+        }
+        tbody tr:nth-child(even) td {
+            background-color: #F8FAFC;
+        }
+        .pred-cell {
+            font-weight: 600;
+            font-size: 6.2pt;
+            padding: 3px 4px;
+            border-radius: 2px;
+            color: #000;
+            min-width: 42px;
+            white-space: nowrap;
+        }
+        .pred-content {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            justify-content: center;
+        }
+        .fi {
+            font-size: 1em;
+            vertical-align: middle;
+            margin: 0 1px;
+            border-radius: 2px;
+            box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+        }
+        .score-badge {
+            font-size: 5.5pt;
+            font-weight: 700;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1px;
+            line-height: 1;
+            color: #fff;
+        }
+        .score-3 {
+            background: #F9A825;
+            color: #000;
+        }
+        .score-1 {
+            background: #2E7D32;
+        }
+        .score-0 {
+            background: #C62828;
+        }
+        .bg-americas {
+            background-color: #D6E4F0;
+        }
+        .bg-europa {
+            background-color: #D0E8E0;
+        }
+        .bg-africa {
+            background-color: #F0E2D0;
+        }
+        .bg-asia {
+            background-color: #F0D0D0;
+        }
+        .bg-oceania {
+            background-color: #C0E0C0;
+        }
+        .bg-empate {
+            background-color: #E2E8F0;
+        }
+        tbody tr:nth-child(even) td.pred-cell.bg-americas {
+            background-color: #c9d9e8;
+        }
+        tbody tr:nth-child(even) td.pred-cell.bg-europa {
+            background-color: #c2dcd4;
+        }
+        tbody tr:nth-child(even) td.pred-cell.bg-africa {
+            background-color: #e8d8c0;
+        }
+        tbody tr:nth-child(even) td.pred-cell.bg-asia {
+            background-color: #e8c4c4;
+        }
+        tbody tr:nth-child(even) td.pred-cell.bg-oceania {
+            background-color: #b3d6d6;
+        }
+        tbody tr:nth-child(even) td.pred-cell.bg-empate {
+            background-color: #d6dce3;
+        }
+        .match-col {
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .match-col .fi {
+            font-size: 1.2em;
+        }
+        tfoot td {
+            font-family: 'Inter', sans-serif;
+            font-size: 5.5pt;
+            background: #fff;
+            text-align: center;
+            padding: 8px 5px;
+            border-top: 1px solid #000;
+            font-weight: 500;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 10px 5px 5px;
+            flex-wrap: wrap;
+            font-size: 6pt;
+            font-weight: 500;
+        }
+        .legend span {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .legend-swatch {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            display: inline-block;
+            border: 0.5px solid #aaa;
+        }
+        .legend-badge {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 2px;
+        }
+        .star-penalty {
+            display: inline-block;
+            font-size: 8pt;
+            color: #00BFFF;
+            text-shadow: 0 0 0 1px #FFD700, 0 0 0 2px #FFD700;
+            margin-left: 2px;
+        }
     </style>
 </head>
 <body>
-<div class="sheet">
-    <h1>⚽ WORLD CUP 2026 - GROUP PREDICTIONS</h1>
-    <div class="table-wrapper">
-        <table>
-            <thead id="table-head">
-                <tr><th>FECHA</th><th>HORA (CET)</th><th>PARTIDO</th><th>RESULT.</th><th>PAULA</th><th>OSCAR</th><th>TOMÁS</th><th>HUESLEY</th><th>SANTIAGO</th><th>MIGUEL</th><th>JUAN</th><th>DANIEL</th></tr>
-            </thead>
-            <tbody id="table-body"></tbody>
-            <tfoot>
-                <tr><td colspan="12">Total: 72 partidos · 3 pts (exacto), 1 pt (ganador), 0 pts (fallo) · Huesley SUI-CAN corregido</td></tr>
-            </tfoot>
-        </table>
+    <div class="sheet">
+        <h1>⚽ FIFA WORLD CUP 2026 – ROUND OF 32 PREDICTIONS</h1>
+        <div class="table-wrapper">
+            <table>
+                <thead id="table-head">
+                    <tr>
+                        <th>FECHA</th>
+                        <th>HORA (CET)</th>
+                        <th>PARTIDO</th>
+                        <th>RESULT.</th>
+                        <th>PAULA</th>
+                        <th>OSCAR</th>
+                        <th>TOMÁS</th>
+                        <th>HUESLEY</th>
+                        <th>MIGUEL</th>
+                        <th>JUAN</th>
+                        <th>DANIEL</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+                <tfoot>
+                    <tr><td colspan="11">Total: 16 partidos · 3 pts (exacto), 1 pt (ganador), +5 pts (penales exactos) · ⭐ = penales acertados</td></tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="legend">
+            <span><span class="legend-swatch" style="background:#D6E4F0;"></span> Américas</span>
+            <span><span class="legend-swatch" style="background:#D0E8E0;"></span> Europa</span>
+            <span><span class="legend-swatch" style="background:#F0E2D0;"></span> África</span>
+            <span><span class="legend-swatch" style="background:#F0D0D0;"></span> Asia</span>
+            <span><span class="legend-swatch" style="background:#C0E0C0;"></span> Oceanía</span>
+            <span><span class="legend-swatch" style="background:#E2E8F0;"></span> Empate</span>
+            <span>⭐ = penales exactos (+5 pts)</span>
+        </div>
     </div>
-    <div class="legend">
-        <span><span class="legend-swatch" style="background:#D6E4F0;"></span> Américas</span>
-        <span><span class="legend-swatch" style="background:#D0E8E0;"></span> Europa</span>
-        <span><span class="legend-swatch" style="background:#F0E2D0;"></span> África</span>
-        <span><span class="legend-swatch" style="background:#F0D0D0;"></span> Asia</span>
-        <span><span class="legend-swatch" style="background:#C0E0E0;"></span> Oceanía</span>
-        <span><span class="legend-swatch" style="background:#E2E8F0;"></span> Empate</span>
-        <span><span class="legend-badge" style="background:#F9A825;"></span> 3</span>
-        <span><span class="legend-badge" style="background:#2E7D32;"></span> 1</span>
-        <span><span class="legend-badge" style="background:#C62828;"></span> 0</span>
-    </div>
-</div>
 
-<script>
-    const regionMap = {
-        'MEX':'americas','RSA':'africa','KOR':'asia','CZE':'europa','CAN':'americas','BIH':'europa',
-        'USA':'americas','PAR':'americas','HAI':'americas','SCO':'europa','AUS':'oceania','TUR':'europa',
-        'BRA':'americas','MAR':'africa','QAT':'asia','SUI':'europa','CIV':'africa','ECU':'americas',
-        'GER':'europa','CUW':'americas','NED':'europa','JPN':'asia','SWE':'europa','TUN':'africa',
-        'KSA':'asia','URU':'americas','ESP':'europa','CPV':'africa','IRN':'asia','NZL':'oceania',
-        'BEL':'europa','EGY':'africa','FRA':'europa','SEN':'africa','IRQ':'asia','NOR':'europa',
-        'ARG':'americas','ALG':'africa','AUT':'europa','JOR':'asia','GHA':'africa','PAN':'americas',
-        'ENG':'europa','CRO':'europa','POR':'europa','COD':'africa','UZB':'asia','COL':'americas'
-    };
-    const flagMap = {
-        'MEX':'mx','RSA':'za','KOR':'kr','CZE':'cz','CAN':'ca','BIH':'ba','USA':'us','PAR':'py',
-        'HAI':'ht','SCO':'gb-sct','AUS':'au','TUR':'tr','BRA':'br','MAR':'ma','QAT':'qa','SUI':'ch',
-        'CIV':'ci','ECU':'ec','GER':'de','CUW':'cw','NED':'nl','JPN':'jp','SWE':'se','TUN':'tn',
-        'KSA':'sa','URU':'uy','ESP':'es','CPV':'cv','IRN':'ir','NZL':'nz','BEL':'be','EGY':'eg',
-        'FRA':'fr','SEN':'sn','IRQ':'iq','NOR':'no','ARG':'ar','ALG':'dz','AUT':'at','JOR':'jo',
-        'GHA':'gh','PAN':'pa','ENG':'gb-eng','CRO':'hr','POR':'pt','COD':'cd','UZB':'uz','COL':'co'
-    };
-    function getRegion(c) { return 'bg-'+(regionMap[c]||'empate'); }
-    function flag(c) { const s=document.createElement('span'); s.className='fi fi-'+(flagMap[c]||c.toLowerCase()); return s; }
-    function parse(s) { if(!s||s==='-'||s.trim()==='') return null; const p=s.split('-'); if(p.length!==2) return null; const a=parseInt(p[0],10),b=parseInt(p[1],10); return isNaN(a)||isNaN(b)?null:{g1:a,g2:b}; }
-    function outcome(g1,g2) { return g1>g2?'home':g1<g2?'away':'draw'; }
-    function score(r,p) { const x=parse(r),y=parse(p); if(!x||!y) return null; if(x.g1===y.g1&&x.g2===y.g2) return 3; return outcome(x.g1,x.g2)===outcome(y.g1,y.g2)?1:0; }
-    function winnerStr(m,home,away) { const p=parse(m); if(!p) return null; if(p.g1>p.g2) return home; if(p.g1<p.g2) return away; return null; }
-    function cell(marcador,home,away,pts) {
-        const td=document.createElement('td'); td.className='pred-cell';
-        const p=parse(marcador); let bg='bg-empate';
-        if(p) { if(p.g1>p.g2) bg=getRegion(home); else if(p.g1<p.g2) bg=getRegion(away); }
-        td.classList.add(bg);
-        const wrap=document.createElement('span'); wrap.className='pred-content';
-        wrap.appendChild(document.createTextNode(marcador||''));
-        const w=p?winnerStr(marcador,home,away):null; if(w&&flagMap[w]) wrap.appendChild(flag(w));
-        if(pts!==null&&pts!==undefined) { const badge=document.createElement('span'); badge.className='score-badge score-'+pts; badge.textContent=pts; wrap.appendChild(badge); }
-        td.appendChild(wrap); return td;
-    }
+    <script>
+        // --------------------------------------------------------------
+        // REGION & FLAG MAPS
+        // --------------------------------------------------------------
+        const regionMap = {
+            'RSA': 'africa', 'CAN': 'americas', 'NED': 'europa', 'MAR': 'africa',
+            'GER': 'europa', 'PAR': 'americas', 'BRA': 'americas', 'JPN': 'asia',
+            'CIV': 'africa', 'NOR': 'europa', 'FRA': 'europa', 'SWE': 'europa',
+            'MEX': 'americas', 'ECU': 'americas', 'ENG': 'europa', 'COD': 'africa',
+            'BEL': 'europa', 'SEN': 'africa', 'USA': 'americas', 'BIH': 'europa',
+            'ESP': 'europa', 'AUT': 'europa', 'POR': 'europa', 'CRO': 'europa',
+            'SUI': 'europa', 'ALG': 'africa', 'ARG': 'americas', 'CPV': 'africa',
+            'COL': 'americas', 'GHA': 'africa', 'AUS': 'oceania', 'EGY': 'africa'
+        };
+        const flagMap = {
+            'RSA': 'za', 'CAN': 'ca', 'NED': 'nl', 'MAR': 'ma',
+            'GER': 'de', 'PAR': 'py', 'BRA': 'br', 'JPN': 'jp',
+            'CIV': 'ci', 'NOR': 'no', 'FRA': 'fr', 'SWE': 'se',
+            'MEX': 'mx', 'ECU': 'ec', 'ENG': 'gb-eng', 'COD': 'cd',
+            'BEL': 'be', 'SEN': 'sn', 'USA': 'us', 'BIH': 'ba',
+            'ESP': 'es', 'AUT': 'at', 'POR': 'pt', 'CRO': 'hr',
+            'SUI': 'ch', 'ALG': 'dz', 'ARG': 'ar', 'CPV': 'cv',
+            'COL': 'co', 'GHA': 'gh', 'AUS': 'au', 'EGY': 'eg'
+        };
 
-    function getGradientColor(value, min, max) {
-        if (max === min) return '#F9A825';
-        const ratio = (value - min) / (max - min);
-        const r1 = 198, g1 = 40, b1 = 40;
-        const r2 = 249, g2 = 168, b2 = 37;
-        const r = Math.round(r1 + (r2 - r1) * ratio);
-        const g = Math.round(g1 + (g2 - g1) * ratio);
-        const b = Math.round(b1 + (b2 - b1) * ratio);
-        return `rgb(${r}, ${g}, ${b})`;
-    }
+        function getRegion(c) { return 'bg-' + (regionMap[c] || 'empate'); }
 
-    const matches = [
-        ['11.06','02:00','MEX','RSA','2-0','3-0','2-1','2-1','1-0','1-0','2-1','1-2','2-1'],
-        ['11.06','21:00','KOR','CZE','2-1','1-1','2-0','1-1','1-2','1-0','2-2','1-1','2-2'],
-        ['12.06','20:00','CAN','BIH','1-1','2-0','1-1','0-1','3-1','1-0','1-1','1-1','1-0'],
-        ['12.06','02:00','USA','PAR','4-1','2-0','1-3','2-0','2-2','1-0','3-2','2-2','2-2'],
-        ['13.06','01:00','HAI','SCO','0-1','0-3','0-2','0-3','0-3','0-2','0-1','0-3','1-2'],
-        ['13.06','02:00','AUS','TUR','2-0','0-2','2-1','1-1','1-3','0-1','1-2','1-2','0-1'],
-        ['13.06','23:00','BRA','MAR','1-1','2-2','3-3','3-0','2-1','1-0','1-2','3-2','2-1'],
-        ['13.06','21:00','QAT','SUI','1-1','0-3','0-2','0-1','1-2','0-2','0-2','0-4','0-3'],
-        ['14.06','01:00','CIV','ECU','1-0','1-2','2-2','2-1','1-1','0-1','2-2','0-2','1-2'],
-        ['14.06','19:00','GER','CUW','7-1','5-0','3-1','4-0','4-0','3-0','3-1','8-0','4-0'],
-        ['14.06','22:00','NED','JPN','2-2','2-1','1-1','2-0','2-1','1-0','1-2','3-2','2-2'],
-        ['14.06','19:00','SWE','TUN','5-1','1-1','2-3','1-1','1-0','1-0','1-0','2-0','1-2'],
-        ['15.06','19:00','KSA','URU','1-1','0-2','0-1','0-2','0-2','0-2','0-2','1-2','1-2'],
-        ['15.06','19:00','ESP','CPV','0-0','4-0','3-0','3-0','4-0','3-0','4-1','6-0','4-1'],
-        ['15.06','02:00','IRN','NZL','2-2','2-0','2-1','1-1','1-0','1-0','0-0','0-0','1-0'],
-        ['15.06','21:00','BEL','EGY','1-1','3-1','2-1','2-0','2-0','2-0','3-1','1-1','2-1'],
-        ['16.06','21:00','FRA','SEN','3-1','2-0','2-2','2-1','3-1','2-0','3-1','2-2','2-2'],
-        ['16.06','23:00','IRQ','NOR','1-4','0-1','0-5','0-2','0-2','0-2','1-2','1-3','0-1'],
-        ['16.06','02:00','ARG','ALG','3-0','3-1','2-1','3-1','3-1','2-0','2-0','3-0','2-1'],
-        ['16.06','02:00','AUT','JOR','3-1','2-0','1-0','2-0','2-0','2-0','2-0','3-1','2-0'],
-        ['17.06','02:00','GHA','PAN','1-0','2-1','3-0','2-0','2-0','1-0','2-2','2-1','2-0'],
-        ['17.06','22:00','ENG','CRO','4-2','2-2','1-2','2-1','2-3','2-1','1-0','2-2','1-1'],
-        ['17.06','19:00','POR','COD','1-1','3-0','2-2','2-0','3-0','2-0','3-0','6-0','3-1'],
-        ['17.06','02:00','UZB','COL','1-3','1-3','0-1','0-2','0-1','0-2','1-3','0-3','0-2'],
-        ['18.06','19:00','CZE','RSA','1-1','2-0','2-1','2-1','3-2','1-0','1-0','1-3','2-0'],
-        ['18.06','22:00','SUI','BIH','4-1','2-1','2-0','1-0','3-0','1-0','3-2','3-2','2-0'],
-        ['18.06','02:00','CAN','QAT','6-0','1-1','2-0','1-0','3-1','2-0','2-0','3-1','2-0'],
-        ['18.06','02:00','MEX','KOR','1-0','2-0','1-1','2-0','2-2','1-0','0-1','2-0','1-2'],
-        ['19.06','20:00','BRA','HAI','3-0','4-0','3-1','4-0','3-0','3-0','2-0','6-0','3-0'],
-        ['19.06','02:00','SCO','MAR','0-1','1-3','1-2','1-1','1-3','1-2','0-2','2-1','1-2'],
-        ['19.06','20:00','TUR','PAR','0-1','1-0','1-2','2-0','1-0','1-0','1-1','2-3','1-2'],
-        ['19.06','20:00','USA','AUS','2-0','2-1','1-2','1-1','2-1','1-0','0-1','1-1','2-0'],
-        ['20.06','22:00','GER','CIV','2-1','2-0','2-1','2-0','3-1','1-0','1-0','3-0','2-1'],
-        ['20.06','02:00','ECU','CUW','0-0','4-0','3-0','2-0','2-0','2-0','1-0','4-0','3-1'],
-        ['20.06','21:00','NED','SWE','5-1','1-1','3-0','2-1','3-1','2-1','2-0','2-1','2-0'],
-        ['20.06','23:00','TUN','JPN','0-4','0-2','0-2','1-1','0-2','1-1','0-2','1-3','0-2'],
-        ['21.06','19:00','URU','CPV','2-2','3-0','2-1','3-0','3-1','2-0','2-1','2-0','2-1'],
-        ['21.06','19:00','ESP','KSA','4-0','3-0','4-0','2-0','2-0','3-1','4-0','3-0','3-1'],
-        ['21.06','22:00','BEL','IRN','0-0','3-0','2-1','2-0','2-1','2-0','4-0','2-0','2-0'],
-        ['21.06','02:00','NZL','EGY','1-3','0-2','0-2','2-1','0-2','0-1','0-1','0-1','0-2'],
-        ['22.06','02:00','NOR','SEN','3-2','1-2','2-1','2-1','3-1','1-1','1-2','1-2','0-2'],
-        ['22.06','19:00','FRA','IRQ','3-0','4-0','2-0','3-0','2-1','3-0','5-0','5-0','4-0'],
-        ['22.06','21:00','ARG','AUT','2-0','3-1','3-1','2-0','1-1','2-0','2-1','3-1','2-0'],
-        ['22.06','02:00','JOR','ALG','1-2','0-3','1-4','0-2','2-2','0-1','0-1','0-2','1-2'],
-        ['23.06','19:00','ENG','GHA','0-0','2-0','2-3','2-0','3-1','1-0','2-1','4-1','2-2'],
-        ['23.06','22:00','PAN','CRO','0-1','1-3','0-4','0-2','1-4','0-3','0-2','0-2','1-3'],
-        ['23.06','21:00','POR','UZB','5-0','4-0','2-0','4-0','4-0','1-0','2-0','4-0','3-0'],
-        ['23.06','02:00','COL','COD','1-0','3-1','1-0','2-0','3-0','2-0','2-0','3-1','2-1'],
-        ['24.06','19:00','SCO','BRA','0-3','0-2','2-3','0-3','0-2','0-0','1-3','1-3','1-2'],
-        ['24.06','19:00','MAR','HAI','4-2','3-0','3-0','2-0','4-1','3-0','2-0','4-0','3-1'],
-        ['24.06','02:00','SUI','CAN','2-1','2-1','1-1','1-1','2-1','1-0','1-0','3-1','2-1'],
-        ['24.06','02:00','BIH','QAT','3-1','1-2','2-0','0-1','0-2','1-0','3-0','1-0','2-0'],
-        ['24.06','21:00','CZE','MEX','0-3','0-1','2-1','1-2','2-0','1-1','1-2','0-2','1-2'],
-        ['24.06','21:00','RSA','KOR','1-0','0-2','0-1','1-1','2-1','0-2','0-2','3-2','0-2'],
-        ['25.06','21:00','CUW','CIV','0-2','0-3','1-2','0-2','0-2','0-2','0-0','1-2','0-2'],
-        ['25.06','22:00','ECU','GER','2-1','2-3','3-3','0-2','0-3','1-2','2-1','2-1','2-2'],
-        ['25.06','02:00','JPN','SWE','1-1','1-0','2-0','1-1','1-0','1-1','1-1','2-1','3-1'],
-        ['25.06','02:00','TUN','NED','1-3','0-3','0-3','1-2','0-3','0-2','0-3','0-4','0-3'],
-        ['25.06','02:00','TUR','USA','3-2','2-2','1-0','1-1','2-0','0-1','2-1','0-1','1-2'],
-        ['25.06','02:00','PAR','AUS','0-0','1-1','3-1','0-2','2-0','1-0','1-0','2-0','2-2'],
-        ['26.06','21:00','NOR','FRA','1-4','0-2','2-2','1-2','0-1','1-2','0-2','1-4','1-2'],
-        ['26.06','21:00','SEN','IRQ','5-0','2-0','3-0','2-0','1-1','1-0','1-0','3-0','2-0'],
-        ['26.06','19:00','EGY','IRN','1-1','1-2','0-0','2-0','1-1','2-1','2-1','2-1','2-1'],
-        ['26.06','19:00','NZL','BEL','1-5','0-3','1-2','0-1','0-3','0-2','0-3','0-2','0-3'],
-        ['26.06','18:00','CPV','KSA','0-0','1-1','2-1','0-1','0-2','1-1','2-0','0-1','2-1'],
-        ['26.06','23:00','URU','ESP','0-1','2-3','1-3','1-2','1-3','2-3','1-3','1-4','1-2'],
-        ['27.06','19:00','PAN','ENG','0-2','0-3','1-1','0-2','1-3','0-2','0-3','0-3','0-2'],
-        ['27.06','21:00','CRO','GHA','2-1','2-0','2-1','2-1','3-2','2-1','2-1','2-2','1-1'],
-        ['27.06','21:00','ALG','AUT','3-3','1-1','3-0','1-2','2-1','0-1','1-2','2-2','2-1'],
-        ['27.06','23:00','JOR','ARG','1-3','0-4','0-3','0-3','0-2','0-4','1-3','0-5','0-3'],
-        ['27.06','21:00','COL','POR','0-0','1-1','0-0','0-2','0-2','2-1','2-3','3-2','1-2'],
-        ['27.06','23:00','COD','UZB','3-1','1-1','0-0','2-0','1-3','1-0','0-1','1-0','1-0']
-    ];
+        function flag(c) {
+            const s = document.createElement('span');
+            s.className = 'fi fi-' + (flagMap[c] || c.toLowerCase());
+            return s;
+        }
 
-    function build() {
-        const tbody = document.getElementById('table-body');
-        tbody.innerHTML = '';
-        const participants = ['paula', 'oscar', 'tomas', 'huesley', 'santiago', 'miguel', 'juan', 'daniel'];
-        const totals = Object.fromEntries(participants.map(p => [p, 0]));
+        // --------------------------------------------------------------
+        // Parseo de resultados (con o sin penales)
+        // --------------------------------------------------------------
+        function parseResult(s) {
+            if (!s || s === '-' || s.trim() === '') return null;
+            const parenMatch = s.match(/\(([^)]+)\)/);
+            let main = s;
+            let penales = null;
+            if (parenMatch) {
+                penales = parenMatch[1].trim();
+                main = s.replace(/\([^)]*\)/, '').trim();
+            }
+            const partes = main.split('-');
+            if (partes.length !== 2) return null;
+            const g1 = parseInt(partes[0].trim(), 10);
+            const g2 = parseInt(partes[1].trim(), 10);
+            if (isNaN(g1) || isNaN(g2)) return null;
+            let penG1 = null, penG2 = null;
+            if (penales) {
+                const pParts = penales.split('-');
+                if (pParts.length === 2) {
+                    penG1 = parseInt(pParts[0].trim(), 10);
+                    penG2 = parseInt(pParts[1].trim(), 10);
+                }
+            }
+            return { g1, g2, penG1, penG2 };
+        }
 
-        matches.forEach(m => {
-            const [fecha, hora, home, away, real, paulaPred, oscar, tomas, huesley, santiago, miguel, juan, daniel] = m;
-            const tr = document.createElement('tr');
-            tr.insertAdjacentHTML('beforeend', `<td class="date-col">${fecha}</td><td class="time-col">${hora}</td>`);
-            const tdMatch = document.createElement('td'); tdMatch.className = 'match-col';
-            tdMatch.appendChild(flag(home)); tdMatch.appendChild(document.createTextNode(' vs ')); tdMatch.appendChild(flag(away));
-            tr.appendChild(tdMatch);
-            tr.appendChild(cell(real||'', home, away, null));
-            [paulaPred, oscar, tomas, huesley, santiago, miguel, juan, daniel].forEach((pred, i) => {
-                const pts = real ? score(real, pred) : null;
-                if (pts !== null) totals[participants[i]] += pts;
-                tr.appendChild(cell(pred, home, away, pts));
-            });
-            tbody.appendChild(tr);
-        });
+        function getWinner(parsed) {
+            if (!parsed) return null;
+            const { g1, g2, penG1, penG2 } = parsed;
+            if (penG1 !== null && penG2 !== null) {
+                if (penG1 > penG2) return 'home';
+                if (penG2 > penG1) return 'away';
+                return null;
+            }
+            if (g1 > g2) return 'home';
+            if (g2 > g1) return 'away';
+            return null;
+        }
 
-        const thRow = document.getElementById('table-head').rows[0];
-        const totalValues = participants.map(p => totals[p]);
-        const maxTotal = Math.max(...totalValues);
-        const minTotal = Math.min(...totalValues);
+        // --------------------------------------------------------------
+        // Cálculo de puntos (base y total)
+        // --------------------------------------------------------------
+        function score(realStr, predStr) {
+            const real = parseResult(realStr);
+            const pred = parseResult(predStr);
+            if (!real || !pred) return { base: 0, total: 0, penalesAcertados: false };
 
-        participants.forEach((p, i) => {
-            const th = thRow.cells[i + 4];
-            const total = totals[p];
-            const bgColor = getGradientColor(total, minTotal, maxTotal);
+            let base = 0;
+            let total = 0;
+            let penalesAcertados = false;
 
-            const nameSpan = document.createElement('span');
-            nameSpan.className = 'header-name';
-            nameSpan.textContent = p.toUpperCase();
+            const realHasPen = (real.penG1 !== null && real.penG2 !== null);
 
-            const badge = document.createElement('span');
-            badge.className = 'total-badge';
-            badge.textContent = total;
-            badge.style.backgroundColor = bgColor;
-            const rgb = bgColor.match(/\d+/g);
-            if (rgb) {
-                const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
-                badge.style.color = brightness > 150 ? '#000' : '#fff';
+            if (realHasPen) {
+                // 1. Acierto exacto del marcador en tiempo reglamentario
+                if (real.g1 === pred.g1 && real.g2 === pred.g2) {
+                    base = 3;
+                } else {
+                    // 2. Acierto del ganador (definido por penales)
+                    const realWinner = getWinner(real);
+                    const predWinner = getWinner(pred);
+                    if (realWinner && predWinner && realWinner === predWinner) {
+                        base = 1;
+                    }
+                }
+
+                // 3. Acierto exacto de los penales
+                if (pred.penG1 !== null && pred.penG2 !== null) {
+                    if (real.penG1 === pred.penG1 && real.penG2 === pred.penG2) {
+                        total += 5;
+                        penalesAcertados = true;
+                    }
+                }
+                total += base;
+            } else {
+                // Sin penales: lógica estándar
+                if (real.g1 === pred.g1 && real.g2 === pred.g2) {
+                    base = 3;
+                } else {
+                    const realWinner = getWinner(real);
+                    const predWinner = getWinner(pred);
+                    if (realWinner && predWinner && realWinner === predWinner) {
+                        base = 1;
+                    }
+                }
+                total = base;
             }
 
-            th.innerHTML = '';
-            th.appendChild(nameSpan);
-            th.appendChild(badge);
-        });
-    }
+            return { base, total, penalesAcertados };
+        }
 
-    build();
-</script>
+        // --------------------------------------------------------------
+        // Celda para el resultado REAL
+        // --------------------------------------------------------------
+        function realCell(realStr) {
+            const td = document.createElement('td');
+            td.className = 'pred-cell';
+            if (realStr && realStr !== '-') {
+                const parsed = parseResult(realStr);
+                if (parsed) {
+                    td.classList.add('bg-empate');
+                    const wrap = document.createElement('span');
+                    wrap.className = 'pred-content';
+                    const mainText = parsed.g1 + '-' + parsed.g2;
+                    wrap.appendChild(document.createTextNode(mainText));
+                    if (parsed.penG1 !== null && parsed.penG2 !== null) {
+                        const penText = ' (' + parsed.penG1 + '-' + parsed.penG2 + ')';
+                        wrap.appendChild(document.createTextNode(penText));
+                    }
+                    td.appendChild(wrap);
+                    return td;
+                }
+            }
+            td.className = 'pred-cell bg-empate';
+            td.textContent = realStr || '-';
+            return td;
+        }
+
+        // --------------------------------------------------------------
+        // Celda para PREDICCIONES (siempre muestra badge si hay resultado)
+        // --------------------------------------------------------------
+        function predCell(marcador, home, away, base, total, penalesAcertados, hayResultado) {
+            const td = document.createElement('td');
+            td.className = 'pred-cell';
+            const parsed = parseResult(marcador);
+            let bg = 'bg-empate';
+            let winner = null;
+            if (parsed) {
+                const w = getWinner(parsed);
+                if (w === 'home') {
+                    bg = getRegion(home);
+                    winner = home;
+                } else if (w === 'away') {
+                    bg = getRegion(away);
+                    winner = away;
+                } else {
+                    bg = 'bg-empate';
+                }
+            }
+            td.classList.add(bg);
+
+            const wrap = document.createElement('span');
+            wrap.className = 'pred-content';
+            wrap.appendChild(document.createTextNode(marcador || '-'));
+
+            if (winner && flagMap[winner]) {
+                wrap.appendChild(flag(winner));
+            }
+
+            if (penalesAcertados) {
+                const star = document.createElement('span');
+                star.className = 'star-penalty';
+                star.textContent = '⭐';
+                wrap.appendChild(star);
+            }
+
+            // Siempre mostrar badge si hay resultado real (incluso si total es 0)
+            if (hayResultado) {
+                const badge = document.createElement('span');
+                badge.className = 'score-badge';
+                let cls = 'score-0';
+                if (base === 3) cls = 'score-3';
+                else if (base === 1) cls = 'score-1';
+                badge.classList.add(cls);
+                badge.textContent = total;
+                wrap.appendChild(badge);
+            }
+
+            td.appendChild(wrap);
+            return td;
+        }
+
+        // --------------------------------------------------------------
+        // Color gradiente para totales de cabecera
+        // --------------------------------------------------------------
+        function getGradientColor(value, min, max) {
+            if (max === min) return '#F9A825';
+            const ratio = (value - min) / (max - min);
+            const r1 = 198, g1 = 40, b1 = 40;
+            const r2 = 249, g2 = 168, b2 = 37;
+            const r = Math.round(r1 + (r2 - r1) * ratio);
+            const g = Math.round(g1 + (g2 - g1) * ratio);
+            const b = Math.round(b1 + (b2 - b1) * ratio);
+            return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+        }
+
+        // --------------------------------------------------------------
+        // DATOS: 16 PARTIDOS
+        // Cada fila: [fecha, hora, local, visitante, real, paula, oscar, tomas, huesley, miguel, juan, daniel]
+        // --------------------------------------------------------------
+        const matches = [
+            // 28.06
+            ['28.06', '21:00', 'RSA', 'CAN', '0-1', '0-1', '1-2', '0-1', '2-1', '2-0', '1-2', '0-2'],
+            // 29.06
+            ['29.06', '19:00', 'NED', 'MAR', '-', '2-1', '0-0 (5-4)', '2-1', '2-1', '4-2', '3-1', '2-2 (5-4)'],
+            ['29.06', '22:30', 'GER', 'PAR', '-', '2-0', '3-1', '3-0', '4-0', '2-1', '1-1 (4-2)', '2-1'],
+            // 30.06
+            ['30.06', '03:00', 'BRA', 'JPN', '-', '2-1', '2-1', '3-1', '3-1', '1-2', '4-3', '2-3'],
+            ['30.06', '19:00', 'CIV', 'NOR', '-', '1-1 (5-4)', '2-1', '1-2', '1-3', '1-2', '2-3', '2-1'],
+            ['30.06', '23:00', 'FRA', 'SWE', '-', '3-0', '3-0', '3-0', '3-0', '4-1', '3-0', '4-1'],
+            // 01.07
+            ['01.07', '03:00', 'MEX', 'ECU', '-', '1-0', '1-2', '2-1', '2-2', '1-2', '2-2 (3-4)', '1-2'],
+            ['01.07', '18:00', 'ENG', 'COD', '-', '2-0', '3-1', '2-0', '3-1', '2-0', '2-0', '3-1'],
+            ['01.07', '22:00', 'BEL', 'SEN', '-', '2-1', '2-3', '1-2', '2-1', '1-0', '1-2', '1-2'],
+            // 02.07
+            ['02.07', '02:00', 'USA', 'BIH', '-', '2-0', '2-0', '2-1', '1-0', '0-1', '3-1', '2-1'],
+            ['02.07', '21:00', 'ESP', 'AUT', '-', '2-1', '2-0', '1-0', '3-0', '3-1', '3-1', '2-0'],
+            // 03.07
+            ['03.07', '01:00', 'POR', 'CRO', '-', '1-1 (4-3)', '2-1', '1-2', '1-1', '1-1 (4-3)', '2-2 (4-3)', '2-2 (3-4)'],
+            ['03.07', '05:00', 'SUI', 'ALG', '-', '1-0', '3-2', '2-0', '2-0', '2-3', '1-2', '2-1'],
+            ['03.07', '20:00', 'ARG', 'CPV', '-', '3-0', '4-1', '2-0', '3-0', '3-0', '0-1', '1-2'],
+            // 04.07
+            ['04.07', '00:00', 'COL', 'GHA', '-', '2-0', '2-1', '2-1', '2-1', '2-0', '4-1', '2-0'],
+            ['04.07', '03:30', 'AUS', 'EGY', '-', '0-0 (4-5)', '0-1', '2-0', '1-0', '1-3', '2-0', '3-1']
+        ];
+
+        // --------------------------------------------------------------
+        // Construcción de la tabla
+        // --------------------------------------------------------------
+        function build() {
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+            const participants = ['paula', 'oscar', 'tomas', 'huesley', 'miguel', 'juan', 'daniel'];
+            const totals = Object.fromEntries(participants.map(p => [p, 0]));
+
+            matches.forEach(m => {
+                const [fecha, hora, home, away, real, paulaPred, oscar, tomas, huesley, miguel, juan, daniel] = m;
+                const preds = [paulaPred, oscar, tomas, huesley, miguel, juan, daniel];
+                const hayResultado = (real && real !== '-');
+
+                const tr = document.createElement('tr');
+                tr.insertAdjacentHTML('beforeend', '<td class="date-col">' + fecha + '</td><td class="time-col">' + hora + '</td>');
+
+                // PARTIDO: banderas
+                const tdMatch = document.createElement('td');
+                tdMatch.className = 'match-col';
+                tdMatch.appendChild(flag(home));
+                tdMatch.appendChild(document.createTextNode(' vs '));
+                tdMatch.appendChild(flag(away));
+                tr.appendChild(tdMatch);
+
+                // RESULTADO REAL
+                tr.appendChild(realCell(real));
+
+                // Predicciones
+                preds.forEach((pred, i) => {
+                    let ptsData = { base: 0, total: 0, penalesAcertados: false };
+                    if (hayResultado) {
+                        ptsData = score(real, pred);
+                        if (ptsData.total > 0) totals[participants[i]] += ptsData.total;
+                    }
+                    const { base, total, penalesAcertados } = ptsData;
+                    tr.appendChild(predCell(pred, home, away, base, total, penalesAcertados, hayResultado));
+                });
+
+                tbody.appendChild(tr);
+            });
+
+            // Actualizar encabezados con totales
+            const thRow = document.getElementById('table-head').rows[0];
+            const totalValues = participants.map(p => totals[p]);
+            const maxTotal = Math.max(...totalValues, 0);
+            const minTotal = Math.min(...totalValues, 0);
+
+            participants.forEach((p, i) => {
+                const th = thRow.cells[i + 4];
+                const total = totals[p];
+                const bgColor = maxTotal === minTotal ? '#ccc' : getGradientColor(total, minTotal, maxTotal);
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'header-name';
+                nameSpan.textContent = p.toUpperCase();
+
+                const badge = document.createElement('span');
+                badge.className = 'total-badge';
+                badge.textContent = total;
+                badge.style.backgroundColor = bgColor;
+                const rgb = bgColor.match(/\d+/g);
+                if (rgb) {
+                    const brightness = (parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000;
+                    badge.style.color = brightness > 150 ? '#000' : '#fff';
+                }
+
+                th.innerHTML = '';
+                th.appendChild(nameSpan);
+                th.appendChild(badge);
+            });
+        }
+
+        build();
+    </script>
 </body>
 </html>
