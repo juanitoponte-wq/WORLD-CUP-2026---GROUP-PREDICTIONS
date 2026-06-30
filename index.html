@@ -278,7 +278,7 @@
                 </thead>
                 <tbody id="table-body"></tbody>
                 <tfoot>
-                    <tr><td colspan="11">Total: 16 partidos · 3 pts (exacto), 1 pt (ganador), +5 pts (penales exactos) · ⭐ = penales acertados</td></tr>
+                    <tr><td colspan="11">Total: 16 partidos · 3 pts (exacto), 1 pt (ganador) · ⭐ = penales exactos (+5 pts)</td></tr>
                 </tfoot>
             </table>
         </div>
@@ -354,21 +354,10 @@
             return { g1, g2, penG1, penG2 };
         }
 
-        function getWinner(parsed) {
-            if (!parsed) return null;
-            const { g1, g2, penG1, penG2 } = parsed;
-            if (penG1 !== null && penG2 !== null) {
-                if (penG1 > penG2) return 'home';
-                if (penG2 > penG1) return 'away';
-                return null;
-            }
-            if (g1 > g2) return 'home';
-            if (g2 > g1) return 'away';
-            return null;
-        }
+        function outcome(g1, g2) { return g1 > g2 ? 'home' : g1 < g2 ? 'away' : 'draw'; }
 
         // --------------------------------------------------------------
-        // Cálculo de puntos (base y total)
+        // Cálculo de puntos (CORREGIDO)
         // --------------------------------------------------------------
         function score(realStr, predStr) {
             const real = parseResult(realStr);
@@ -379,56 +368,50 @@
             let total = 0;
             let penalesAcertados = false;
 
-            const realHasPen = (real.penG1 !== null && real.penG2 !== null);
-
-            if (realHasPen) {
-                // 1. Acierto exacto del marcador en tiempo reglamentario
-                if (real.g1 === pred.g1 && real.g2 === pred.g2) {
-                    base = 3;
-                } else {
-                    // 2. Acierto del ganador (definido por penales)
-                    const realWinner = getWinner(real);
-                    const predWinner = getWinner(pred);
-                    if (realWinner && predWinner && realWinner === predWinner) {
-                        base = 1;
-                    }
-                }
-
-                // 3. Acierto exacto de los penales
-                if (pred.penG1 !== null && pred.penG2 !== null) {
-                    if (real.penG1 === pred.penG1 && real.penG2 === pred.penG2) {
-                        total += 5;
-                        penalesAcertados = true;
-                    }
-                }
-                total += base;
+            // Lógica estándar: 3 si marcador exacto, 1 si resultado (ganador/empate) correcto
+            if (real.g1 === pred.g1 && real.g2 === pred.g2) {
+                base = 3;
             } else {
-                // Sin penales: lógica estándar
-                if (real.g1 === pred.g1 && real.g2 === pred.g2) {
-                    base = 3;
-                } else {
-                    const realWinner = getWinner(real);
-                    const predWinner = getWinner(pred);
-                    if (realWinner && predWinner && realWinner === predWinner) {
-                        base = 1;
-                    }
+                const realRes = outcome(real.g1, real.g2);
+                const predRes = outcome(pred.g1, pred.g2);
+                if (realRes === predRes) {
+                    base = 1;
                 }
-                total = base;
             }
 
+            // Bonus por penales exactos (solo si ambos tienen penales y coinciden)
+            if (real.penG1 !== null && real.penG2 !== null &&
+                pred.penG1 !== null && pred.penG2 !== null) {
+                if (real.penG1 === pred.penG1 && real.penG2 === pred.penG2) {
+                    total += 5;
+                    penalesAcertados = true;
+                }
+            }
+
+            total += base;
             return { base, total, penalesAcertados };
         }
 
         // --------------------------------------------------------------
-        // Celda para el resultado REAL
+        // Celda para el resultado REAL (con bandera del ganador)
         // --------------------------------------------------------------
-        function realCell(realStr) {
+        function realCell(realStr, home, away) {
             const td = document.createElement('td');
             td.className = 'pred-cell';
             if (realStr && realStr !== '-') {
                 const parsed = parseResult(realStr);
                 if (parsed) {
-                    td.classList.add('bg-empate');
+                    let bg = 'bg-empate';
+                    let winner = null;
+                    const w = outcome(parsed.g1, parsed.g2);
+                    if (w === 'home') {
+                        bg = getRegion(home);
+                        winner = home;
+                    } else if (w === 'away') {
+                        bg = getRegion(away);
+                        winner = away;
+                    }
+                    td.classList.add(bg);
                     const wrap = document.createElement('span');
                     wrap.className = 'pred-content';
                     const mainText = parsed.g1 + '-' + parsed.g2;
@@ -436,6 +419,9 @@
                     if (parsed.penG1 !== null && parsed.penG2 !== null) {
                         const penText = ' (' + parsed.penG1 + '-' + parsed.penG2 + ')';
                         wrap.appendChild(document.createTextNode(penText));
+                    }
+                    if (winner && flagMap[winner]) {
+                        wrap.appendChild(flag(winner));
                     }
                     td.appendChild(wrap);
                     return td;
@@ -456,7 +442,7 @@
             let bg = 'bg-empate';
             let winner = null;
             if (parsed) {
-                const w = getWinner(parsed);
+                const w = outcome(parsed.g1, parsed.g2);
                 if (w === 'home') {
                     bg = getRegion(home);
                     winner = home;
@@ -484,7 +470,6 @@
                 wrap.appendChild(star);
             }
 
-            // Siempre mostrar badge si hay resultado real (incluso si total es 0)
             if (hayResultado) {
                 const badge = document.createElement('span');
                 badge.className = 'score-badge';
@@ -515,28 +500,28 @@
         }
 
         // --------------------------------------------------------------
-        // DATOS: 16 PARTIDOS REORGANIZADOS SEGÚN NUEVO CALENDARIO
+        // DATOS: 16 PARTIDOS CON RESULTADOS ACTUALIZADOS
         // Cada fila: [fecha, hora, local, visitante, real, paula, oscar, tomas, huesley, miguel, juan, daniel]
         // --------------------------------------------------------------
         const matches = [
             // 28.06
             ['28.06', '21:00', 'RSA', 'CAN', '0-1', '0-1', '1-2', '0-1', '2-1', '2-0', '1-2', '0-2'],
             // 29.06
-            ['29.06', '19:00', 'BRA', 'JPN', '-', '2-1', '2-1', '3-1', '3-1', '1-2', '4-3', '2-2 (5-4)'],
-            ['29.06', '22:30', 'GER', 'PAR', '-', '2-0', '3-1', '3-0', '4-0', '2-1', '1-1 (4-2)', '2-1'],
+            ['29.06', '19:00', 'BRA', 'JPN', '2-1', '2-1', '2-1', '3-1', '3-1', '1-2', '4-3', '2-2 (5-4)'],
+            ['29.06', '22:30', 'GER', 'PAR', '1-1 (4-3)', '2-0', '3-1', '3-0', '4-0', '2-1', '1-1 (4-2)', '2-1'],
             // 30.06
-            ['30.06', '03:00', 'NED', 'MAR', '-', '2-1', '0-0 (5-4)', '2-1', '2-1', '4-2', '3-1', '2-3'],
+            ['30.06', '03:00', 'NED', 'MAR', '1-1 (3-2)', '2-1', '0-0 (5-4)', '2-1', '2-1', '4-2', '3-1', '2-3'],
             ['30.06', '19:00', 'CIV', 'NOR', '-', '1-1 (5-4)', '2-1', '1-2', '1-3', '1-2', '2-3', '2-1'],
             ['30.06', '23:00', 'FRA', 'SWE', '-', '3-0', '3-0', '3-0', '3-0', '4-1', '3-0', '4-1'],
             // 01.07
-            ['01.07', '03:00', 'MEX', 'ECU', '-', '1-0', '1-2', '2-1', '2-2 (5-4)', '1-2', '2-2 (3-4)', '1-2'], // Huesley actualizado
+            ['01.07', '03:00', 'MEX', 'ECU', '-', '1-0', '1-2', '2-1', '2-2 (5-4)', '1-2', '2-2 (3-4)', '1-2'],
             ['01.07', '18:00', 'ENG', 'COD', '-', '2-0', '3-1', '2-0', '3-1', '2-0', '2-0', '3-1'],
             ['01.07', '22:00', 'BEL', 'SEN', '-', '2-1', '2-3', '1-2', '2-1', '1-0', '1-2', '1-2'],
             // 02.07
             ['02.07', '02:00', 'USA', 'BIH', '-', '2-0', '2-0', '2-1', '1-0', '0-1', '3-1', '2-1'],
             ['02.07', '21:00', 'ESP', 'AUT', '-', '2-1', '2-0', '1-0', '3-0', '3-1', '3-1', '2-0'],
             // 03.07
-            ['03.07', '01:00', 'POR', 'CRO', '-', '1-1 (4-3)', '2-1', '1-2', '1-1 (4-3)', '1-1 (4-3)', '2-2 (4-3)', '2-2 (3-4)'], // Huesley actualizado
+            ['03.07', '01:00', 'POR', 'CRO', '-', '1-1 (4-3)', '2-1', '1-2', '1-1 (4-3)', '1-1 (4-3)', '2-2 (4-3)', '2-2 (3-4)'],
             ['03.07', '05:00', 'SUI', 'ALG', '-', '1-0', '3-2', '2-0', '2-0', '2-3', '1-2', '2-1'],
             ['03.07', '20:00', 'AUS', 'EGY', '-', '0-0 (4-5)', '0-1', '2-0', '1-0', '1-3', '2-0', '1-2'],
             // 04.07
@@ -569,8 +554,8 @@
                 tdMatch.appendChild(flag(away));
                 tr.appendChild(tdMatch);
 
-                // RESULTADO REAL
-                tr.appendChild(realCell(real));
+                // RESULTADO REAL (con bandera del ganador)
+                tr.appendChild(realCell(real, home, away));
 
                 // Predicciones
                 preds.forEach((pred, i) => {
